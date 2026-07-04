@@ -16,52 +16,6 @@
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
-        // --- Custom Cursor Logic ---
-        const cursorDot = document.querySelector('.custom-cursor-dot');
-        const cursorRing = document.querySelector('.custom-cursor-ring');
-        
-        let mouseX = 0;
-        let mouseY = 0;
-        let ringX = 0;
-        let ringY = 0;
-        
-        // Use requestAnimationFrame for smooth spring physics on the ring
-        function animateCursor() {
-            // Dot follows exactly
-            cursorDot.style.left = `${mouseX}px`;
-            cursorDot.style.top = `${mouseY}px`;
-            
-            // Ring follows with easing (lerp)
-            ringX += (mouseX - ringX) * 0.15;
-            ringY += (mouseY - ringY) * 0.15;
-            cursorRing.style.left = `${ringX}px`;
-            cursorRing.style.top = `${ringY}px`;
-            
-            requestAnimationFrame(animateCursor);
-        }
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            // Initialize ring position on first move to prevent jumping from corner
-            if (ringX === 0 && ringY === 0) {
-                ringX = mouseX;
-                ringY = mouseY;
-                requestAnimationFrame(animateCursor);
-            }
-        });
-
-        // Hover effects on clickable elements
-        const hoverElements = document.querySelectorAll('a, button, .nav-pill, .skill-node, .details-left');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                document.body.classList.add('cursor-hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                document.body.classList.remove('cursor-hover');
-            });
-        });
 
         // --- Preloader ---
         const preloader = document.getElementById('preloader');

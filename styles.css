@@ -50,14 +50,10 @@
             max-width: 1600px;
             margin: 0 auto;
             font-size: 12px;
-            cursor: none; /* Custom cursor */
             transition: color 0.3s ease;
         }
 
-        /* --- Dark Mode Toggle Styles --- */
-        #theme-toggle {
-            cursor: none;
-        }
+
 
         .theme-transition-layer {
             position: fixed;
@@ -121,44 +117,7 @@
             opacity: 0.6;
         }
 
-        /* --- Custom Cursor --- */
-        .custom-cursor-dot,
-        .custom-cursor-ring {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 9999;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            mix-blend-mode: difference;
-        }
 
-        .custom-cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #fff;
-            transition: width 0.2s, height 0.2s;
-        }
-
-        .custom-cursor-ring {
-            width: 30px;
-            height: 30px;
-            border: 1px solid #fff;
-            transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
-        }
-
-        body.cursor-hover .custom-cursor-dot {
-            width: 4px;
-            height: 4px;
-        }
-
-        body.cursor-hover .custom-cursor-ring {
-            width: 50px;
-            height: 50px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: transparent;
-        }
 
         /* --- Header / Navigation --- */
         header {
@@ -468,7 +427,7 @@
             position: fixed;
             width: 24px;
             height: 24px;
-            cursor: none; /* Let custom cursor handle it */
+            cursor: pointer;
             z-index: 500;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%231a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="14" x="8" y="6" rx="4"/><path d="m19 7-3 2"/><path d="m5 7 3 2"/><path d="m19 19-3-2"/><path d="m5 19 3-2"/><path d="M20 13h-4"/><path d="M4 13h4"/><path d="m10 4 1 2"/><path d="m14 4-1 2"/></svg>');
             background-size: contain;
