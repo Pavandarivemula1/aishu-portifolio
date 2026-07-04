@@ -13,9 +13,21 @@
 </head>
 
 <body>
+    <!-- Premium Upgrades: Preloader & Canvas Background -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-text" id="preloader-text">Loading...</div>
+    </div>
+    <canvas id="bg-canvas" class="bg-canvas"></canvas>
+
+    <div class="custom-cursor-dot"></div>
+    <div class="custom-cursor-ring"></div>
+    
+    <div id="theme-transition-layer" class="theme-transition-layer"></div>
 
     <header>
         <div id="bug-counter" class="nav-pill" style="margin-right: auto; background: transparent; border: 1px solid var(--border-color); color: var(--text-color); display: none; opacity: 0; transition: opacity 0.3s ease;">Bugs Fixed: 0</div>
+        <div id="high-score" class="nav-pill" style="margin-right: auto; background: transparent; border: 1px solid var(--border-color); color: var(--text-color); display: none; opacity: 0; transition: opacity 0.3s ease;">High Score: 0</div>
+        <div class="nav-pill" id="theme-toggle">Theme</div>
 
         <a href="https://www.linkedin.com/in/aishwarya-chundu-a64a65353" target="_blank" rel="noopener noreferrer" style="color: var(--text-color); display: flex; align-items: center;" aria-label="LinkedIn">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -255,9 +267,11 @@
         </div>
     </div>
 
+    <!-- External Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="script.js"></script>
 
 </body>

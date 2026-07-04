@@ -8,6 +8,30 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Remove default browser focus outlines */
+        *:focus {
+            outline: none;
+        }
+
+        /* Custom accessible focus rings using design system tokens */
+        *:focus-visible {
+            outline: 2px solid var(--text-color);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        /* Premium tactile active states for interactive elements */
+        a:active,
+        button:active,
+        .nav-pill:active,
+        .details-left:active,
+        .skill-node:active,
+        .service-pill:active {
+            transform: scale(0.96) !important;
+            transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1) !important;
         }
 
         @media print {
@@ -26,6 +50,104 @@
             max-width: 1600px;
             margin: 0 auto;
             font-size: 12px;
+            cursor: none; /* Custom cursor */
+            transition: color 0.3s ease;
+        }
+
+        /* --- Dark Mode Toggle Styles --- */
+        #theme-toggle {
+            cursor: none;
+        }
+
+        .theme-transition-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9998;
+            pointer-events: none;
+            clip-path: circle(0px at 50% 50%);
+            /* Transition added in JS dynamically */
+        }
+
+        /* --- Preloader --- */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--bg-color);
+            color: var(--text-color);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            clip-path: circle(150% at 50% 50%);
+        }
+        
+        .preloader.hidden {
+            clip-path: circle(0% at 50% 50%);
+        }
+
+        .preloader-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        /* --- Fluid Canvas Background --- */
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* --- Custom Cursor --- */
+        .custom-cursor-dot,
+        .custom-cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        .custom-cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #fff;
+            transition: width 0.2s, height 0.2s;
+        }
+
+        .custom-cursor-ring {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #fff;
+            transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
+        }
+
+        body.cursor-hover .custom-cursor-dot {
+            width: 4px;
+            height: 4px;
+        }
+
+        body.cursor-hover .custom-cursor-ring {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: transparent;
         }
 
         /* --- Header / Navigation --- */
@@ -324,16 +446,22 @@
         }
 
         /* --- QA Bug Hunt Game Styles --- */
+        @keyframes bugWiggle {
+            0%, 100% { transform: rotate(-10deg) scale(var(--bug-scale, 1)); }
+            50% { transform: rotate(10deg) scale(var(--bug-scale, 1)); }
+        }
+
         .qa-bug {
             position: fixed;
             width: 24px;
             height: 24px;
-            cursor: crosshair;
+            cursor: none; /* Let custom cursor handle it */
             z-index: 500;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%231a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="14" x="8" y="6" rx="4"/><path d="m19 7-3 2"/><path d="m5 7 3 2"/><path d="m19 19-3-2"/><path d="m5 19 3-2"/><path d="M20 13h-4"/><path d="M4 13h4"/><path d="m10 4 1 2"/><path d="m14 4-1 2"/></svg>');
             background-size: contain;
             background-repeat: no-repeat;
-            transition: transform 0.1s linear;
+            transition: left 0.1s linear, top 0.1s linear;
+            animation: bugWiggle 0.15s infinite;
         }
 
         .qa-bug:hover {

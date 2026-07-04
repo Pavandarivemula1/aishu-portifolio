@@ -1,3 +1,150 @@
+        // --- Smooth Scrolling (Lenis) ---
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+        // --- Custom Cursor Logic ---
+        const cursorDot = document.querySelector('.custom-cursor-dot');
+        const cursorRing = document.querySelector('.custom-cursor-ring');
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let ringX = 0;
+        let ringY = 0;
+        
+        // Use requestAnimationFrame for smooth spring physics on the ring
+        function animateCursor() {
+            // Dot follows exactly
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+            
+            // Ring follows with easing (lerp)
+            ringX += (mouseX - ringX) * 0.15;
+            ringY += (mouseY - ringY) * 0.15;
+            cursorRing.style.left = `${ringX}px`;
+            cursorRing.style.top = `${ringY}px`;
+            
+            requestAnimationFrame(animateCursor);
+        }
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Initialize ring position on first move to prevent jumping from corner
+            if (ringX === 0 && ringY === 0) {
+                ringX = mouseX;
+                ringY = mouseY;
+                requestAnimationFrame(animateCursor);
+            }
+        });
+
+        // Hover effects on clickable elements
+        const hoverElements = document.querySelectorAll('a, button, .nav-pill, .skill-node, .details-left');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                document.body.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                document.body.classList.remove('cursor-hover');
+            });
+        });
+
+        // --- Preloader ---
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                    setTimeout(() => preloader.remove(), 1200);
+                }, 500);
+            }
+        });
+
+        // --- Dark Mode Toggle ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const transitionLayer = document.getElementById('theme-transition-layer');
+        let isDarkMode = false;
+        
+        if (themeToggle && transitionLayer) {
+            themeToggle.addEventListener('click', (e) => {
+                const rect = themeToggle.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                
+                isDarkMode = !isDarkMode;
+                const newBg = isDarkMode ? '#1a1a1a' : '#f2f2f0';
+                const newText = isDarkMode ? '#f2f2f0' : '#1a1a1a';
+                const newBorder = isDarkMode ? '#444' : '#b3b3b3';
+                
+                transitionLayer.style.backgroundColor = newBg;
+                transitionLayer.style.transition = 'none';
+                transitionLayer.style.clipPath = `circle(0px at ${x}px ${y}px)`;
+                
+                // Force reflow
+                void transitionLayer.offsetWidth;
+                
+                transitionLayer.style.transition = 'clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1)';
+                transitionLayer.style.clipPath = `circle(150vw at ${x}px ${y}px)`;
+                
+                setTimeout(() => {
+                    document.documentElement.style.setProperty('--bg-color', newBg);
+                    document.documentElement.style.setProperty('--text-color', newText);
+                    document.documentElement.style.setProperty('--border-color', newBorder);
+                    
+                    transitionLayer.style.transition = 'none';
+                    transitionLayer.style.clipPath = 'circle(0px at 50% 50%)';
+                    themeToggle.innerText = isDarkMode ? 'Light Mode' : 'Dark Mode';
+                }, 800);
+            });
+        }
+
+        // --- Fluid Canvas Background ---
+        const bgCanvas = document.getElementById('bg-canvas');
+        if (bgCanvas) {
+            const bgCtx = bgCanvas.getContext('2d');
+            
+            function resizeBg() {
+                bgCanvas.width = window.innerWidth;
+                bgCanvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeBg);
+            resizeBg();
+            
+            let time = 0;
+            function drawBg() {
+                const w = bgCanvas.width;
+                const h = bgCanvas.height;
+                bgCtx.clearRect(0, 0, w, h);
+                
+                const cx = w/2 + Math.cos(time) * w/4;
+                const cy = h/2 + Math.sin(time * 0.8) * h/4;
+                
+                bgCtx.beginPath();
+                const opacity = isDarkMode ? 0.08 : 0.03;
+                bgCtx.fillStyle = `rgba(128, 128, 128, ${opacity})`;
+                bgCtx.arc(cx, cy, w/1.5, 0, Math.PI * 2);
+                bgCtx.fill();
+                
+                time += 0.005;
+                requestAnimationFrame(drawBg);
+            }
+            drawBg();
+        }
+
         // Modal Logic
         const resumeBtn = document.getElementById('resume-btn');
         const modal = document.getElementById('download-modal');
@@ -408,6 +555,16 @@
             bugCounter.style.color = 'var(--text-color)';
             setTimeout(() => { bugCounter.style.opacity = '1'; }, 10);
             
+            const currentHigh = parseInt(localStorage.getItem('qaHighScore') || '0');
+            if (currentHigh > 0) {
+                const highScoreEl = document.getElementById('high-score');
+                if (highScoreEl) {
+                    highScoreEl.innerText = `High Score: ${currentHigh}`;
+                    highScoreEl.style.display = 'block';
+                    setTimeout(() => { highScoreEl.style.opacity = '1'; }, 10);
+                }
+            }
+            
             startBtn.style.opacity = '0';
             setTimeout(() => { startBtn.style.display = 'none'; }, 200);
             
@@ -494,13 +651,25 @@
             bug.addEventListener('mousedown', (e) => {
                 e.stopPropagation(); 
                 clearInterval(moveInterval);
-                createParticles(posX + 12, posY + 12);
+                createSplat(posX + 12, posY + 12);
                 if (bug.parentNode) bug.parentNode.removeChild(bug);
                 
                 if (!gameActive) return; // Prevent scoring after game over
                 
                 bugsFixed++;
                 bugCounter.innerText = `Bugs Fixed: ${bugsFixed}/5`;
+                
+                // Track High Score
+                const currentHigh = parseInt(localStorage.getItem('qaHighScore') || '0');
+                if (bugsFixed > currentHigh) {
+                    localStorage.setItem('qaHighScore', bugsFixed);
+                    const highScoreEl = document.getElementById('high-score');
+                    if (highScoreEl) {
+                        highScoreEl.innerText = `High Score: ${bugsFixed}`;
+                        highScoreEl.style.display = 'block';
+                        highScoreEl.style.opacity = '1';
+                    }
+                }
                 
                 if (bugsFixed >= 5) {
                     gameActive = false;
@@ -514,6 +683,34 @@
                     unlockAchievement();
                 }
             });
+        }
+
+        // Advanced Splat Animation
+        function createSplat(x, y) {
+            for (let i = 0; i < 8; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'bug-particle';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                
+                // Random size and color mix (splat)
+                const size = Math.random() * 8 + 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.backgroundColor = Math.random() > 0.5 ? 'var(--text-color)' : '#e74c3c';
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 40 + 10;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                particle.style.transform = `translate(${tx}px, ${ty}px)`;
+                
+                document.body.appendChild(particle);
+                setTimeout(() => {
+                    if(particle.parentNode) particle.remove();
+                }, 600);
+            }
         }
         
         function unlockAchievement() {
@@ -538,30 +735,6 @@
             setTimeout(() => {
                 if(flash.parentNode) flash.parentNode.removeChild(flash);
             }, 1100);
-        }
-        
-        function createParticles(x, y) {
-            for (let i = 0; i < 8; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'bug-particle';
-                const size = Math.random() * 4 + 2;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.left = x + 'px';
-                particle.style.top = y + 'px';
-                
-                const angle = Math.random() * Math.PI * 2;
-                const velocity = Math.random() * 30 + 10;
-                const destX = x + Math.cos(angle) * velocity;
-                const destY = y + Math.sin(angle) * velocity;
-                
-                particle.style.transform = `translate(${destX - x}px, ${destY - y}px)`;
-                document.body.appendChild(particle);
-                
-                setTimeout(() => {
-                    if (particle.parentNode) particle.parentNode.removeChild(particle);
-                }, 600);
-            }
         }
         
         function scheduleNextBug() {
