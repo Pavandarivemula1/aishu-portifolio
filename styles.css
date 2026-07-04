@@ -220,7 +220,7 @@
         .hero-image-container img {
             width: 100%;
             height: auto;
-            max-height: 400px;
+            max-height: 650px;
             display: block;
             object-fit: cover;
             background-color: #d88c27;
@@ -605,6 +605,10 @@
                 min-width: 0;
             }
 
+            .hero-image-container img {
+                max-height: 500px;
+            }
+
             .details-section {
                 grid-template-columns: 1fr;
                 gap: 0;
@@ -641,6 +645,10 @@
 
             .hero-subtitle {
                 font-size: 1rem;
+            }
+
+            .hero-image-container img {
+                max-height: 400px;
             }
 
             .skills-grid {
