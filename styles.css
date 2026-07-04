@@ -50,6 +50,7 @@
             max-width: 1600px;
             margin: 0 auto;
             font-size: 12px;
+            cursor: default;
             transition: color 0.3s ease;
         }
 
