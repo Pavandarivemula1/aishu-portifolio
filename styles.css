@@ -220,7 +220,7 @@
         .hero-image-container img {
             width: 100%;
             height: auto;
-            max-height: 720px;
+            max-height: 860px;
             display: block;
             object-fit: cover;
             background-color: #d88c27;
