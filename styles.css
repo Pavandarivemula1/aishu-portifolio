@@ -219,10 +219,10 @@
 
         .hero-image-container img {
             width: 100%;
-            height: auto;
-            max-height: 1200px;
+            height: 860px;
             display: block;
             object-fit: cover;
+            object-position: top center;
             background-color: #d88c27;
         }
 
@@ -606,7 +606,7 @@
             }
 
             .hero-image-container img {
-                max-height: 500px;
+                height: 500px;
             }
 
             .details-section {
@@ -648,7 +648,7 @@
             }
 
             .hero-image-container img {
-                max-height: 400px;
+                height: 400px;
             }
 
             .skills-grid {
