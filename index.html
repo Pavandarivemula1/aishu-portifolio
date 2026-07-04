@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aishwarya Chundu - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <header>
+        <div id="bug-counter" class="nav-pill" style="margin-right: auto; background: transparent; border: 1px solid var(--border-color); color: var(--text-color); display: none; opacity: 0; transition: opacity 0.3s ease;">Bugs Fixed: 0</div>
+
+        <a href="https://www.linkedin.com/in/aishwarya-chundu-a64a65353" target="_blank" rel="noopener noreferrer" style="color: var(--text-color); display: flex; align-items: center;" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+        </a>
+        <div class="nav-pill" id="resume-btn" style="cursor: pointer;">Resume</div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-left">
+                <h1 class="main-title">Aishwarya Chundu</h1>
+                <div class="hero-subtitle">
+                    A passionate and ambitious software professional with a strong interest in frontend engineering,
+                    user interface development, and software quality assurance.
+                </div>
+            </div>
+            <div class="info-table">
+                <div class="info-row">
+                    <span class="info-label">(Focus)</span>
+                    <span class="info-value">Frontend & QA</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">(Education)</span>
+                    <span class="info-value">Bachelor of Technology</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">(Core Stack)</span>
+                    <span class="info-value">HTML, CSS, JS (ES6+)</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">(Expertise)</span>
+                    <span class="service-pill">UI Engineering</span>
+                </div>
+                
+                <div id="qa-badge" class="info-row" style="display: none; opacity: 0; transform: translateY(10px); transition: all 0.6s ease;">
+                    <span class="info-label">(Achievement)</span>
+                    <span class="service-pill" style="border: 1px solid var(--text-color);">QA Master 🏆</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero-image-container">
+        <img src="hero.png" alt="Aishwarya Chundu profile image" draggable="false" oncontextmenu="return false;" style="pointer-events: none; user-select: none; -webkit-user-drag: none;">
+    </section>
+
+    <section class="details-section">
+        <div class="details-left">
+            <span>(Details)</span>
+            <span>↘</span>
+        </div>
+        <div class="details-right">
+
+            <div class="detail-block">
+                <span class="block-label">(About Me)</span>
+                <h2>Creating Impactful Experiences</h2>
+                <p>Technology has always been more than just a field of study for me; it is an opportunity to solve
+                    meaningful problems and create products that positively impact users. I enjoy transforming ideas
+                    into polished digital experiences by combining frontend development with quality assurance and user
+                    experience principles.</p>
+                <p>Every project is viewed as an opportunity to improve technical expertise while delivering reliable
+                    and scalable solutions. My professional philosophy centers on continuous improvement, teamwork,
+                    innovation, and maintaining high standards of quality throughout every stage of software
+                    development.</p>
+            </div>
+
+            <div class="detail-block">
+                <span class="block-label">(Experience)</span>
+                <h2>Enterprise Web Development</h2>
+                <p>I have contributed to the development of enterprise-level web applications by working on responsive
+                    user interfaces, implementing modern frontend designs, validating application quality, testing
+                    software across multiple browsers and devices, documenting software issues, and supporting product
+                    improvements throughout the development lifecycle.</p>
+                <ul>
+                    <li>Developing responsive and mobile-friendly web interfaces.</li>
+                    <li>Converting design concepts into production-ready frontend components.</li>
+                    <li>Testing applications across multiple browsers and operating systems.</li>
+                    <li>Identifying, documenting, and reporting software defects.</li>
+                    <li>Improving usability, accessibility, and validating responsive layouts.</li>
+                    <li>Preparing technical documentation and collaborating with cross-functional teams.</li>
+                </ul>
+            </div>
+
+            <div class="detail-block">
+                <span class="block-label">(Technical Skills)</span>
+                <h2>Tools & Technologies</h2>
+                <div class="skill-tree-container">
+                    <div class="skill-tree-header">
+                        <span>Mastery Progress</span>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" id="skill-progress"></div>
+                        </div>
+                        <span id="skill-percent" style="min-width: 30px; text-align: right;">0%</span>
+                    </div>
+                    <div class="skill-tree-graph" id="skill-tree-graph">
+                        <svg class="skill-connections" id="skill-svg">
+                            <!-- SVG lines drawn via JS -->
+                        </svg>
+                        
+                        <div class="node-level level-1">
+                            <div class="skill-node root-node active" data-id="root">Aishwarya Chundu</div>
+                        </div>
+                        
+                        <div class="node-level level-2">
+                            <div class="skill-node" data-id="frontend" data-parent="root">Frontend Eng.</div>
+                            <div class="skill-node" data-id="qa" data-parent="root">QA Engineering</div>
+                            <div class="skill-node" data-id="tools" data-parent="root">Tools & Core</div>
+                        </div>
+                        
+                        <div class="node-level level-3">
+                            <div class="skill-node sub-node" data-id="htmlcss" data-parent="frontend">HTML/CSS UI</div>
+                            <div class="skill-node sub-node" data-id="js" data-parent="frontend">JS (ES6+)</div>
+                            
+                            <div class="skill-node sub-node" data-id="manual" data-parent="qa">Manual/UI Testing</div>
+                            <div class="skill-node sub-node" data-id="functional" data-parent="qa">Bug Reporting</div>
+                            
+                            <div class="skill-node sub-node" data-id="git" data-parent="tools">Git / VS Code</div>
+                            <div class="skill-node sub-node" data-id="perf" data-parent="tools">A11y / Perf</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-block">
+                <span class="block-label">(Vision)</span>
+                <h2>Empowering People Through Technology</h2>
+                <p>My long-term vision is to work with innovative engineering teams, continuously master modern
+                    technologies, mentor future developers, and build products that solve real-world problems while
+                    delivering exceptional experiences to users around the world.</p>
+                <p>I believe that technology should empower people, simplify complex processes, and create meaningful
+                    impact. Through continuous learning, dedication, and innovation, I am committed to building a
+                    successful career as a software professional while contributing to the growth of organizations and
+                    the advancement of modern digital solutions.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="details-section">
+        <div class="details-left">
+            <span>(Projects)</span>
+            <span>↘</span>
+        </div>
+        <div class="details-right">
+
+            <div class="detail-block">
+                <span class="block-label">(LMS)</span>
+                <h2>Enterprise Learning Management System</h2>
+                <p>Worked on developing responsive user interfaces, improving mobile compatibility, validating
+                    application functionality, documenting software improvements, and supporting enterprise learning
+                    experiences through intuitive frontend implementation.</p>
+            </div>
+
+            <div class="detail-block">
+                <span class="block-label">(Workflow)</span>
+                <h2>Project Management System</h2>
+                <p>Contributed to dashboard interface development, responsive layouts, reusable UI components, task
+                    management screens, navigation improvements, and quality validation for project workflow
+                    applications.</p>
+            </div>
+
+            <div class="detail-block">
+                <span class="block-label">(Internal)</span>
+                <h2>Employee Management Portal</h2>
+                <p>Participated in frontend implementation, employee profile interfaces, responsive forms,
+                    administrative dashboards, testing, documentation, and user experience improvements.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="details-section">
+        <div class="details-left">
+            <span>(Timeline & Certs)</span>
+            <span>↘</span>
+        </div>
+        <div class="details-right">
+
+            <div class="detail-block">
+                <span class="block-label">(01 Foundation)</span>
+                <h2>Building the Basics</h2>
+                <p>Developed strong fundamentals in programming, web technologies, and software engineering while
+                    pursuing a Bachelor of Technology.</p>
+            </div>
+
+            <div class="detail-block">
+                <span class="block-label">(02 Development)</span>
+                <h2>Skill Development</h2>
+                <p>Built expertise in frontend development, responsive design, JavaScript, quality assurance, and
+                    technical documentation through continuous learning and practical implementation.</p>
+            </div>
+
+            <div class="detail-block">
+                <span class="block-label">(03 Experience)</span>
+                <h2>Professional Experience</h2>
+                <p>Joined enterprise software development projects, contributing to frontend engineering, responsive UI
+                    development, software testing, documentation, and product improvements.</p>
+            </div>
+
+            <div class="detail-block">
+                <span class="block-label">(04 Achievements)</span>
+                <h2>Continuous Growth & Certifications</h2>
+                <p>Expanded knowledge through professional certifications, hands-on projects, and ongoing exploration of
+                    emerging web technologies and engineering best practices.</p>
+                <ul>
+                    <li>NPTEL Certification: The Joy of Computing Using Python</li>
+                    <li>NPTEL Certification: Human-Computer Interaction (HCI)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span>(Aishwarya Chundu)</span>
+        <button id="start-qa-btn" class="nav-pill" style="margin: 0 20px; background: transparent; border: 1px solid var(--border-color); color: var(--text-color); cursor: pointer; transition: opacity 0.2s;">Play QA Hunt</button>
+        <span>(Frontend & QA)</span>
+    </footer>
+
+    <div id="game-over-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(239, 68, 68, 0.8); z-index: 9999; flex-direction: column; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+        <h2 style="color: white; font-size: 3rem; margin-bottom: 20px;">Game Over</h2>
+        <p style="color: white; font-size: 1.2rem; margin-bottom: 30px;">The bugs got into the code!</p>
+        <button id="retry-btn" class="nav-pill" style="background: white; color: #ef4444; border: none; font-size: 1.2rem; cursor: pointer; padding: 12px 24px;">Try Again</button>
+    </div>
+
+    <div id="download-modal" class="modal">
+        <div class="modal-content">
+            <h3>Download Resume</h3>
+            <p>Select your preferred format:</p>
+            <div class="modal-actions">
+                <button id="btn-pdf">PDF</button>
+                <button id="btn-docx">DOCX</button>
+                <button id="btn-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
