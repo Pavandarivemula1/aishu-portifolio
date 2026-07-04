@@ -27,16 +27,22 @@
     <header>
         <div id="bug-counter" class="nav-pill" style="margin-right: auto; background: transparent; border: 1px solid var(--border-color); color: var(--text-color); display: none; opacity: 0; transition: opacity 0.3s ease;">Bugs Fixed: 0</div>
         <div id="high-score" class="nav-pill" style="margin-right: auto; background: transparent; border: 1px solid var(--border-color); color: var(--text-color); display: none; opacity: 0; transition: opacity 0.3s ease;">High Score: 0</div>
-        <div class="nav-pill" id="theme-toggle">Theme</div>
+        <div style="display: flex; align-items: center; gap: 12px; margin-left: auto;">
+            <a href="https://www.linkedin.com/in/aishwarya-chundu-a64a65353" target="_blank" rel="noopener noreferrer" style="color: var(--text-color); display: flex; align-items: center;" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+            </a>
+            <div class="nav-pill" id="resume-btn" style="cursor: pointer;">Resume</div>
 
-        <a href="https://www.linkedin.com/in/aishwarya-chundu-a64a65353" target="_blank" rel="noopener noreferrer" style="color: var(--text-color); display: flex; align-items: center;" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                <rect x="2" y="9" width="4" height="12"></rect>
-                <circle cx="4" cy="4" r="2"></circle>
-            </svg>
-        </a>
-        <div class="nav-pill" id="resume-btn" style="cursor: pointer;">Resume</div>
+            <div class="nav-pill" id="theme-toggle" style="cursor: pointer; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 0; border-radius: 50%;" aria-label="Toggle Theme">
+                <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </div>
+        </div>
     </header>
 
     <section class="hero">
